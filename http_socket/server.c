@@ -10,19 +10,23 @@
 #include <unistd.h>
 
 #include <sys/socket.h>
-#include <sys/types.h>
 
 #include <netinet/in.h>
 
 int main() {
-    // open a file to server
+    // open a file to serve
+    int c;
     FILE *html_data;
-    html_data = fopen("./index.html", "r");
+    html_data = fopen("../index.html", "r");
 
-    char response_data[1024];
-    fgets(response_data, 1024, html_data);
+    // read contents of html file into buffer
+    char response_data[3000];
+    while ((c = getc(html_data)) != EOF)
+        strcat(response_data, (const char *) &c);
 
-    char http_header[2048] = "HTTP/1.1 200 OK\r\n\n";
+    fclose(html_data);
+
+    char http_header[6000] = "HTTP/1.1 200 OK\r\n\n";
 
     strcat(http_header, response_data);
 
@@ -33,10 +37,14 @@ int main() {
     // define the address
     struct sockaddr_in server_address;
     server_address.sin_family = AF_INET;
-    server_address.sin_port = htons(8001);
+    server_address.sin_port = htons(7071);
     server_address.sin_addr.s_addr = INADDR_ANY;
 
-    bind(server_socket, (struct sockaddr *) &server_address, sizeof(server_address));
+    int bind_status = bind(server_socket, (struct sockaddr *) &server_address, sizeof(server_address));
+    if(bind_status == -1) {
+        printf("Something went wrong while binding the socket to the server address.\n");
+        exit(-1);
+    }
 
     listen(server_socket, 5);
 
