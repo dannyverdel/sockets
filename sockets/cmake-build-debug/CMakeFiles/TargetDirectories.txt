@@ -1,5 +1,4 @@
 /Users/dannyverdel/Github/sockets/sockets/cmake-build-debug/CMakeFiles/rebuild_cache.dir
 /Users/dannyverdel/Github/sockets/sockets/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/dannyverdel/Github/sockets/sockets/cmake-build-debug/CMakeFiles/client.dir
 /Users/dannyverdel/Github/sockets/sockets/cmake-build-debug/CMakeFiles/server.dir
-/Users/dannyverdel/Github/sockets/sockets/cmake-build-debug/CMakeFiles/sockets.dir
+/Users/dannyverdel/Github/sockets/sockets/cmake-build-debug/CMakeFiles/client.dir
